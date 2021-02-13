@@ -24,8 +24,11 @@ AddEventHandler("guille_storevehicle", function(plate, properties)
 end)
 
 ESX.RegisterServerCallback('guille_getvehicles', function(source,cb) 
-
-    MySQL.Async.fetchAll("SELECT vehicle, position FROM owned_vehicles", {}, function(result)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    MySQL.Async.fetchAll("SELECT vehicle, position FROM owned_vehicles WHERE owner=@identifier", {
+        ['@identifier'] = xPlayer.getIdentifier()
+    }, function(result)
         local vehicles = {}
         if result[1] ~= nil then
             for i = 1, #result, 1 do
