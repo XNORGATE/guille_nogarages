@@ -35,12 +35,9 @@ end)
 function GetPlayers()
     Citizen.Wait(Config.timetospawn * 1000)
     print(GetNumberOfPlayers())
-    if GetNumberOfPlayers() == 1 then
-        ESX.ShowNotification('Do not restart FiveM, we are loading cars.')
-        Citizen.Wait(1000)
-        CreateVehicles()
-    end
-
+    ESX.ShowNotification('Do not restart FiveM, we are loading cars.')
+    Citizen.Wait(1000)
+    CreateVehicles()
 end
 
 function CreateBlip()
