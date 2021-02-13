@@ -68,7 +68,7 @@ function CreateVehicles()
             local vehicle = CreateVehicle(vehicleProps["model"], position.x, position.y, position.z - 0.975, position.heading, true, true)
             Citizen.Wait(1000)
             ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
-			SetEntityAsMissionEntity(vehicle, true, true)
+	    SetEntityAsMissionEntity(vehicle, true, true)
             SetVehicleOnGroundProperly(vehicle)
             print("^2 ¡Vehicle ^0" .. mod .. "^2 loaded!")
         end
