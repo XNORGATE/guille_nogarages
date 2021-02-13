@@ -13,7 +13,6 @@ Citizen.CreateThread(function()
     while ESX == nil do 
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end) 
         Citizen.Wait(0) 
-	CreateBlip()		
     end 
 end)
 
@@ -25,20 +24,12 @@ AddEventHandler('onResourceStart', function(resource)
     end
 end)
 
-AddEventHandler('esx:onPlayerSpawn', function()
-    Citizen.CreateThread(function()
-        while not playerLoaded do
-            Citizen.Wait(100)
-        end
-        GetPlayers()
-        CreateBlip()
-    end)
-end)
-
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
     playerLoaded = true
     print("spawn")
+    GetPlayers()
+    CreateBlip()
 end)
 
 function GetPlayers()
