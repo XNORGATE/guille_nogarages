@@ -205,16 +205,11 @@ end
 
 function delvehifexist(vehicle)
 	local cars = ESX.Game.GetVehicles()
-        local found = false	
 	for i=1, #cars, 1 do
         	local found_plate = GetVehicleNumberPlateText(cars[i])
        		if vehicle.plate == found_plate then
-			found = true
+			DeleteEntity(cars[i]) -----delete the same car in the server to prevent the copying-car issue
 			break
  	    	end		
   	end
-	
-	if found then 
-		DeleteEntity(cars[i]) -----delete the same car in the server to prevent the copying-car issue
-	end
 end
