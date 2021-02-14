@@ -184,7 +184,6 @@ function ReturnVehicleMenu()
             ESX.TriggerServerCallback('guille_nogarages:checkMoney', function(hasEnoughMoney)
                 if hasEnoughMoney then
                     SpawnPoundedVehicle(data.current.value)
-		    delvehifexist(data.current.value)
                     menu.close()
                 else
                     ESX.ShowNotification('Not enough money')
