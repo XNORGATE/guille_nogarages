@@ -198,19 +198,18 @@ end
 function SpawnPoundedVehicle(vehicle)
     LoadModel(vehicle.model)
     local car = CreateVehicle(vehicle.model, 489.64, -1333.88, 29.32 - 0.975, 316.84, true, true)
-    ESX.Game.SetVehicleProperties(car), vehicle)
-    local veh_plate = GetVehicleNumberPlateText(car)
-    checkif_vehexist(veh_plate)
+    ESX.Game.SetVehicleProperties(car, vehicle)
+    local veh_plate = GetLabelText(car)
+    delvehifexist(veh_plate)
 end
 
-function checkif_vehexist(veh_plate)
+function delvehifexist(veh_plate)
 	local cars = ESX.Game.GetVehicles()
-	for i=1, #cars, 1 do 
-		local finding_plate = GetVehicleNumberPlateText(cars[i])
-		if finding_plate = veh_plate then
-                	DeleteEntity(cars[i])
+	for i=1, #cars, 1 do
+        	local found_plate = GetVehicleNumberPlateText(cars[i])
+       		if veh_plate == found_plate then
+			DeleteEntity(cars[i]) -----delete the same car in the server to prevent the copying-car issue
 			break
-                end        
-        end 
+ 	    	end		
+  	end
 end
-
