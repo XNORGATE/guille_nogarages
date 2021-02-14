@@ -184,6 +184,7 @@ function ReturnVehicleMenu()
             ESX.TriggerServerCallback('guille_nogarages:checkMoney', function(hasEnoughMoney)
                 if hasEnoughMoney then
                     SpawnPoundedVehicle(data.current.value)
+		    delvehifexist(data.current.value)
                     menu.close()
                 else
                     ESX.ShowNotification('Not enough money')
@@ -200,4 +201,20 @@ function SpawnPoundedVehicle(vehicle)
     local car = CreateVehicle(vehicle.model, 489.64, -1333.88, 29.32 - 0.975, 316.84, true, true)
     ESX.Game.SetVehicleProperties(car, vehicle)
     
+end
+
+function delvehifexist(vehicle)
+	local cars = ESX.Game.GetVehicles()
+        local found = false	
+	for i=1, #cars, 1 do
+        	local found_plate = GetVehicleNumberPlateText(cars[i])
+       		if vehicle.plate == found_plate then
+			found = true
+			break
+ 	    	end		
+  	end
+	
+	if found then 
+		DeleteEntity(cars[i]) -----delete the same car in the server to prevent the copying-car issue
+	end
 end
