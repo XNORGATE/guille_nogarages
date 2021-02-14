@@ -198,6 +198,19 @@ end
 function SpawnPoundedVehicle(vehicle)
     LoadModel(vehicle.model)
     local car = CreateVehicle(vehicle.model, 489.64, -1333.88, 29.32 - 0.975, 316.84, true, true)
-    ESX.Game.SetVehicleProperties(car, vehicle)
-    
+    ESX.Game.SetVehicleProperties(car), vehicle)
+    local veh_plate = GetVehicleNumberPlateText(car)
+    checkif_vehexist(veh_plate)
 end
+
+function checkif_vehexist(veh_plate)
+	local cars = ESX.Game.GetVehicles()
+	for i=1, #cars, 1 do 
+		local finding_plate = GetVehicleNumberPlateText(cars[i])
+		if finding_plate = veh_plate then
+                	DeleteEntity(cars[i])
+			break
+                end        
+        end 
+end
+
